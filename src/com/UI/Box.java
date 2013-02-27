@@ -15,7 +15,7 @@ public class Box extends JPanel {
 	public Box(){
 		super();
 		this.setSize(50, 50);
-		this.setBackground(new Color(100, 0, 0));
+		this.setBackground(Color.WHITE);
 		this.setMinimumSize(new Dimension(50, 50));
 		this.setMaximumSize(new Dimension(50, 50));
 		this.setPreferredSize(new Dimension(50, 50));

@@ -52,7 +52,6 @@ public class Board extends JPanel {
 //		gbc.gridheight = 1;
 //		gbc.gridwidth = 1;
 		Dot comp = new Dot();
-		System.out.println("adding dot to " + gbc.gridx + gbc.gridy);
 		this.add(comp, gbc);
 	}
 	
@@ -65,7 +64,6 @@ public class Board extends JPanel {
 //			gbc.gridwidth = 1;
 		}
 		Line comp = new Line(horizontal);
-		System.out.println("adding line to " + gbc.gridx + gbc.gridy);
 		this.add(comp, gbc);
 //		getContentPane().add(comp, gbc);
 	}
@@ -74,7 +72,6 @@ public class Board extends JPanel {
 //		gbc.gridheight = 4;
 //		gbc.gridwidth = 4;
 		Box comp = new Box();
-		System.out.println("adding box to " + gbc.gridx + gbc.gridy);
 		this.add(comp, gbc);
 //		getContentPane().add(comp, gbc);
 	}
