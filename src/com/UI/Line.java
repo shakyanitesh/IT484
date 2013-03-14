@@ -7,15 +7,21 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JPanel;
 
+import com.state.Player;
+
 public class Line extends JPanel implements MouseListener{
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -1013186591824142112L;
+	private boolean clicked;
+	private Box box1;
+	private Box box2;
 
 	public Line(boolean horizontal){
 		super();
+		clicked = false;
 		if(horizontal){
 //			this.setSize(50, 10);
 			this.setMinimumSize(new Dimension(50, 10));
@@ -30,23 +36,72 @@ public class Line extends JPanel implements MouseListener{
 		this.setBackground(Color.WHITE);
 		addMouseListener(this);
 	}
+	
+	public boolean getClicked(){
+		return this.clicked;
+	}
+	
+	public void setBox1(Box box) {
+		box1 = box;
+	}
+
+	public void setBox2(Box box) {
+		box2 = box;
+	}
+	
+	public Box getBox1(){
+		return box1;
+	}
+	
+	public Box getBox2(){
+		return box2;
+	}
+	
+	private boolean checkBox(){
+		boolean box1Complete = false;
+		boolean box2Complete = false;
+		if(this.box1 != null){
+			box1Complete = this.box1.checkIfComplete();
+		}
+		if(this.box2 != null){
+			box2Complete = this.box2.checkIfComplete();
+		}
+		return box1Complete || box2Complete;
+	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		System.out.println("HERE");
-		this.setBackground(Color.RED);
-		
+		if(!clicked){
+			clicked = true;
+			if(Player.turn){
+				this.setBackground(Color.RED);
+				if(!checkBox()){
+					Player.turn = false;
+				}
+			} else {
+				this.setBackground(Color.YELLOW);
+				if(!checkBox()){
+					Player.turn = true;
+				}
+				
+			}
+		}
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
-		this.setBackground(Color.BLUE);
+		if(!clicked){
+			this.setBackground(Color.BLUE);
+		}
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
-		this.setBackground(Color.WHITE);
+		if(!clicked){
+			this.setBackground(Color.WHITE);
+		}
+		
 		
 	}
 
@@ -61,5 +116,6 @@ public class Line extends JPanel implements MouseListener{
 		// TODO Auto-generated method stub
 		
 	}
+
 
 }

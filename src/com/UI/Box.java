@@ -5,12 +5,18 @@ import java.awt.Dimension;
 
 import javax.swing.JPanel;
 
+import com.state.Player;
+
 public class Box extends JPanel {
 	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 8210921496253749477L;
+	private Line verticalLine1;
+	private Line verticalLine2;
+	private Line horizontalLine1;
+	private Line horizontalLine2;
 
 	public Box(){
 		super();
@@ -21,4 +27,54 @@ public class Box extends JPanel {
 		this.setPreferredSize(new Dimension(50, 50));
 	}
 
+	public void setVerticalLine1(Line line){
+		this.verticalLine1 = line;
+	}
+
+	public void setVerticalLine2(Line line) {
+		this.verticalLine2 = line;
+	}
+	
+	public void setHorizontalLine2(Line line) {
+		this.horizontalLine1 = line;
+	}
+
+	public void setHorizontalLine1(Line line) {
+		this.horizontalLine2 = line;
+	}
+	
+	public Line getVerticalLine1(Line line){
+		return this.verticalLine1;
+	}
+
+	public Line getVerticalLine2(Line line) {
+		return this.verticalLine2;
+	}
+	
+	public Line getHorizontalLine2(Line line) {
+		return this.horizontalLine1;
+	}
+
+	public Line getHorizontalLine1(Line line) {
+		return this.horizontalLine2;
+	}
+	
+	public boolean checkIfComplete(){
+		if(verticalLine1.getClicked()){
+			if(verticalLine2.getClicked()){
+				if(horizontalLine1.getClicked()){
+					if(horizontalLine2.getClicked()){
+						if(Player.turn){
+							this.setBackground(Color.RED);
+							return true;
+						} else {
+							this.setBackground(Color.YELLOW);
+							return true;
+						}
+					}
+				}
+			}
+		}
+		return false;
+	}
 }
