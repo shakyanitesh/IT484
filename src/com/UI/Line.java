@@ -85,6 +85,7 @@ public class Line extends JPanel implements MouseListener{
 				}
 				
 			}
+			MainPage.setTurn();
 		}
 	}
 

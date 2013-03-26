@@ -17,9 +17,11 @@ public class Box extends JPanel {
 	private Line verticalLine2;
 	private Line horizontalLine1;
 	private Line horizontalLine2;
+	private boolean complete;
 
 	public Box(){
 		super();
+		complete = false;
 		this.setSize(50, 50);
 		this.setBackground(Color.WHITE);
 		this.setMinimumSize(new Dimension(50, 50));
@@ -58,19 +60,26 @@ public class Box extends JPanel {
 	public Line getHorizontalLine1(Line line) {
 		return this.horizontalLine2;
 	}
+	;
+	public boolean getComplete(){
+		return complete;
+	}
 	
 	public boolean checkIfComplete(){
 		if(verticalLine1.getClicked()){
 			if(verticalLine2.getClicked()){
 				if(horizontalLine1.getClicked()){
 					if(horizontalLine2.getClicked()){
+						Player.setScore(Player.getScore() + 1);
+						MainPage.refreshScore();
+						complete = true;
 						if(Player.turn){
 							this.setBackground(Color.RED);
-							return true;
+
 						} else {
 							this.setBackground(Color.YELLOW);
-							return true;
 						}
+						return complete;
 					}
 				}
 			}

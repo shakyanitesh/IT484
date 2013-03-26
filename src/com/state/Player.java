@@ -5,7 +5,8 @@ public class Player {
 	public static boolean turn = true;
 	
 	
-	private int score;
+	private static int score1 = 0;
+	private static int score2 = 0;
 	private String name;
 	public Player(String name){
 		this.name = name;
@@ -15,12 +16,30 @@ public class Player {
 	public String getName(){
 		return this.name;
 	}
-	public void setScore(int score){
-		this.score = score;
+	public static void setScore(int score){
+		if(turn){
+			score1 = score;
+			return;
+		}
+		score2 = score;
+		
 	}
 	
-	public int getScore(){
-		return score;
+	public static int getScore(){
+		if(turn){
+			return score1;
+		}
+		return score2;
 	}
+	
+	public static int getPlayer1Score(){
+		return score1;
+
+	}
+
+	public static int getPlayer2Score(){
+		return score2;
+	}
+	
 
 }
