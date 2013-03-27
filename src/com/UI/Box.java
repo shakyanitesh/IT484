@@ -5,7 +5,7 @@ import java.awt.Dimension;
 
 import javax.swing.JPanel;
 
-import com.state.Player;
+import com.state.SingletonStatus;
 
 public class Box extends JPanel {
 	
@@ -70,10 +70,10 @@ public class Box extends JPanel {
 			if(verticalLine2.getClicked()){
 				if(horizontalLine1.getClicked()){
 					if(horizontalLine2.getClicked()){
-						Player.setScore(Player.getScore() + 1);
+						SingletonStatus.setScore(SingletonStatus.getScore() + 1);
 						MainPage.refreshScore();
 						complete = true;
-						if(Player.turn){
+						if(SingletonStatus.turn){
 							this.setBackground(Color.RED);
 
 						} else {

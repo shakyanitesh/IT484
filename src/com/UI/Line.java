@@ -7,7 +7,7 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JPanel;
 
-import com.state.Player;
+import com.state.SingletonStatus;
 
 public class Line extends JPanel implements MouseListener{
 	
@@ -73,15 +73,15 @@ public class Line extends JPanel implements MouseListener{
 	public void mouseClicked(MouseEvent e) {
 		if(!clicked){
 			clicked = true;
-			if(Player.turn){
+			if(SingletonStatus.turn){
 				this.setBackground(Color.RED);
 				if(!checkBox()){
-					Player.turn = false;
+					SingletonStatus.turn = false;
 				}
 			} else {
 				this.setBackground(Color.YELLOW);
 				if(!checkBox()){
-					Player.turn = true;
+					SingletonStatus.turn = true;
 				}
 				
 			}

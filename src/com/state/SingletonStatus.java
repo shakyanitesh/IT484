@@ -1,6 +1,6 @@
 package com.state;
 
-public class Player {
+public class SingletonStatus {
 	
 	public static boolean turn = true;
 	
@@ -8,7 +8,7 @@ public class Player {
 	private static int score1 = 0;
 	private static int score2 = 0;
 	private String name;
-	public Player(String name){
+	public SingletonStatus(String name){
 		this.name = name;
 		
 	}
