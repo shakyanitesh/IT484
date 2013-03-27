@@ -32,6 +32,14 @@ public class Board extends JPanel {
 //		this.setSize(400,400);
 	}
 	
+	public List<Line> getHorizontalLines(){
+		return this.listOfHorizontalLines;
+	}
+	
+	public List<Line> getVerticalLines(){
+		return this.listOfVerticalLines;
+	}
+	
 	public boolean checkComplete(){
 //		for(Line line : listOfHorizontalLines){
 //			if(!line.getClicked()){

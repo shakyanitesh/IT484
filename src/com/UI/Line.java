@@ -7,6 +7,7 @@ import java.awt.event.MouseListener;
 
 import javax.swing.JPanel;
 
+import com.state.AI;
 import com.state.SingletonStatus;
 
 public class Line extends JPanel implements MouseListener{
@@ -73,15 +74,18 @@ public class Line extends JPanel implements MouseListener{
 	public void mouseClicked(MouseEvent e) {
 		if(!clicked){
 			clicked = true;
-			if(SingletonStatus.turn){
+			if(SingletonStatus.getInstance().getTurn()){
 				this.setBackground(Color.RED);
 				if(!checkBox()){
-					SingletonStatus.turn = false;
+					SingletonStatus.getInstance().setTurn(false);
+					AI.getInstance().run();
 				}
 			} else {
 				this.setBackground(Color.YELLOW);
 				if(!checkBox()){
-					SingletonStatus.turn = true;
+					SingletonStatus.getInstance().setTurn(true);
+				} else {
+					AI.getInstance().run();
 				}
 				
 			}

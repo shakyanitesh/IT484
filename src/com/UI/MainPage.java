@@ -6,6 +6,7 @@ import java.awt.Button;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import com.state.AI;
 import com.state.SingletonStatus;
 
 public class MainPage extends JPanel{
@@ -20,8 +21,11 @@ public class MainPage extends JPanel{
 	private static JLabel player2Score = new JLabel("Player 2: 0");
 	private JPanel score = new JPanel();
 	private static Board board;
+	
+	
 	public MainPage(){
 		board = new Board(5);
+		AI.getInstance().setBoard(board);
 		this.setLayout(new BorderLayout());
 		this.add(board, BorderLayout.CENTER);
 		this.add(turnStatus, BorderLayout.NORTH);
@@ -35,15 +39,15 @@ public class MainPage extends JPanel{
 			turnStatus.setText("Game Complete");
 			return;
 		}
-		if(SingletonStatus.turn){
+		if(SingletonStatus.getInstance().getTurn()){
 			turnStatus.setText("Player 1's turn");
 		} else{
 			turnStatus.setText("Player 2's turn");
 		}
 	}
 	public static void refreshScore(){
-		player1Score.setText("Player 1: " + SingletonStatus.getPlayer1Score());
-		player2Score.setText("Player 2: " + SingletonStatus.getPlayer2Score());
+		player1Score.setText("Player 1: " + SingletonStatus.getInstance().getPlayer1Score());
+		player2Score.setText("Player 2: " + SingletonStatus.getInstance().getPlayer2Score());
 	}
 	public void setPlayer1Score(int score){
 		player1Score.setText("Player 1: " + score);

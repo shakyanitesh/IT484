@@ -70,10 +70,10 @@ public class Box extends JPanel {
 			if(verticalLine2.getClicked()){
 				if(horizontalLine1.getClicked()){
 					if(horizontalLine2.getClicked()){
-						SingletonStatus.setScore(SingletonStatus.getScore() + 1);
+						SingletonStatus.getInstance().setScore(SingletonStatus.getInstance().getScore() + 1);
 						MainPage.refreshScore();
 						complete = true;
-						if(SingletonStatus.turn){
+						if(SingletonStatus.getInstance().getTurn()){
 							this.setBackground(Color.RED);
 
 						} else {
