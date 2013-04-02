@@ -103,7 +103,6 @@ public class AI {
 		}
 		for(Line line : verticalLines){
 			if(line.getClicked() != true){
-				System.out.println("Returning from first encounter: " + line);
 				tempLine.add(line);
 			}
 		}
