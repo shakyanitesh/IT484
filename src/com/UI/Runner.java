@@ -9,7 +9,7 @@ public class Runner {
 		JFrame window = new JFrame();
 //		window.setLayout(/*new CardLayout()*/);
 //		new JPanel()\\ 
-		MainPage mainPage = new MainPage();
+		MainPage mainPage = new MainPage(5, false);
 		window.getContentPane().add(mainPage);
 //		
 		window.pack();

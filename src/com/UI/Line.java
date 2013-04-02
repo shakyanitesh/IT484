@@ -17,11 +17,15 @@ public class Line extends JPanel implements MouseListener{
 	 */
 	private static final long serialVersionUID = -1013186591824142112L;
 	private boolean clicked;
+	private int x;
+	private int y;
 	private Box box1;
 	private Box box2;
 
-	public Line(boolean horizontal){
+	public Line(boolean horizontal, int x, int y){
 		super();
+		this.x = x;
+		this.y = y;
 		clicked = false;
 		if(horizontal){
 //			this.setSize(50, 10);
@@ -70,6 +74,10 @@ public class Line extends JPanel implements MouseListener{
 		return box1Complete || box2Complete;
 	}
 
+	@Override 
+	public String toString(){
+		return "Line: " + x + y; 
+	}
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		if(!clicked){
@@ -78,14 +86,19 @@ public class Line extends JPanel implements MouseListener{
 				this.setBackground(Color.RED);
 				if(!checkBox()){
 					SingletonStatus.getInstance().setTurn(false);
-					AI.getInstance().run();
+					if(!MainPage.getPlayer2()){
+						AI.getInstance().run();
+					}
 				}
 			} else {
 				this.setBackground(Color.YELLOW);
 				if(!checkBox()){
 					SingletonStatus.getInstance().setTurn(true);
 				} else {
-					AI.getInstance().run();
+					if(!MainPage.getPlayer2()){
+						AI.getInstance().run();
+					}
+					
 				}
 				
 			}

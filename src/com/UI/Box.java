@@ -45,19 +45,19 @@ public class Box extends JPanel {
 		this.horizontalLine2 = line;
 	}
 	
-	public Line getVerticalLine1(Line line){
+	public Line getVerticalLine1(){
 		return this.verticalLine1;
 	}
 
-	public Line getVerticalLine2(Line line) {
+	public Line getVerticalLine2() {
 		return this.verticalLine2;
 	}
 	
-	public Line getHorizontalLine2(Line line) {
+	public Line getHorizontalLine2() {
 		return this.horizontalLine1;
 	}
 
-	public Line getHorizontalLine1(Line line) {
+	public Line getHorizontalLine1() {
 		return this.horizontalLine2;
 	}
 	;
@@ -74,10 +74,10 @@ public class Box extends JPanel {
 						MainPage.refreshScore();
 						complete = true;
 						if(SingletonStatus.getInstance().getTurn()){
-							this.setBackground(Color.RED);
+							this.setBackground(Color.MAGENTA);
 
 						} else {
-							this.setBackground(Color.YELLOW);
+							this.setBackground(Color.ORANGE);
 						}
 						return complete;
 					}
@@ -85,5 +85,22 @@ public class Box extends JPanel {
 			}
 		}
 		return false;
+	}
+	
+	public int getNumberOfLinesCompleted(){
+		int returnValue = 0;
+		if(this.verticalLine1.getClicked()){
+			returnValue += 1;
+		}
+		if(this.verticalLine2.getClicked()){
+			returnValue += 1;
+		}
+		if(this.horizontalLine1.getClicked()){
+			returnValue += 1;
+		}
+		if(this.horizontalLine2.getClicked()){
+			returnValue += 1;
+		}
+		return returnValue;
 	}
 }

@@ -32,6 +32,10 @@ public class Board extends JPanel {
 //		this.setSize(400,400);
 	}
 	
+	public List<Box> getBoxes(){
+		return this.listOfBoxes;
+	}
+	
 	public List<Line> getHorizontalLines(){
 		return this.listOfHorizontalLines;
 	}
@@ -41,18 +45,6 @@ public class Board extends JPanel {
 	}
 	
 	public boolean checkComplete(){
-//		for(Line line : listOfHorizontalLines){
-//			if(!line.getClicked()){
-//				System.out.println("HERE IN HORI");
-//				return false;
-//			}
-//		}
-//		for(Line line : listOfVerticalLines){
-//			if(!line.getClicked()){
-//				System.out.println("HERE IN VERTICAL");
-//				return false;
-//			}
-//		}
 		for(Box box : listOfBoxes){
 			if(!box.getComplete()){
 				return false;
@@ -78,11 +70,11 @@ public class Board extends JPanel {
 					if(j % 2 == 1){
 						addDot();
 					} else {
-						addLine(true);
+						addLine(true, i, j);
 					}
 				} else {
 					if(j % 2 == 1){
-						addLine(false);
+						addLine(false, i, j);
 					} else {
 						addBox();
 					}
@@ -155,8 +147,8 @@ public class Board extends JPanel {
 		this.add(comp, gbc);
 	}
 	
-	private void addLine(boolean horizontal){
-		Line comp = new Line(horizontal);
+	private void addLine(boolean horizontal, int x, int y){
+		Line comp = new Line(horizontal, x, y);
 		if(horizontal){
 			listOfHorizontalLines.add(comp);
 		} else {
