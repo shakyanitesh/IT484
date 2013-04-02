@@ -13,24 +13,23 @@ public class MainPage extends JPanel{
 	 */
 	private static final long serialVersionUID = -386551712892064216L;
 	
-	//The status 
+	//Labels for status of turn and scores of players
 	private static JLabel turnStatus = new JLabel("Player 1's Turn");
 	private static JLabel player1Score= new JLabel("Player 1: 0");
 	private static JLabel player2Score = new JLabel("Player 2: 0");
-	private JPanel score = new JPanel();
-	private static Board board;
-	private static boolean player2;
 	
-	public static boolean getPlayer2(){
-		return player2;
-	}
+	//Panel that will take the score
+	private JPanel score = new JPanel();
+	//Board that will be in main page
+	private static Board board;
 	
 
 	public MainPage(int numOfBoxes, boolean player2){
 		board = new Board(5);
-		this.player2 = player2;
+		AI instance = AI.getInstance();
+		instance.setEnabled(!player2);
 		if(!player2){
-			AI.getInstance().setBoard(board);
+			instance.setBoard(board);
 		}
 		
 		this.setLayout(new BorderLayout());

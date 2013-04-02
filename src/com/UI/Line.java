@@ -86,7 +86,7 @@ public class Line extends JPanel implements MouseListener{
 				this.setBackground(Color.RED);
 				if(!checkBox()){
 					SingletonStatus.getInstance().setTurn(false);
-					if(!MainPage.getPlayer2()){
+					if(AI.getInstance().getEnabled()){
 						AI.getInstance().run();
 					}
 				}
@@ -95,14 +95,14 @@ public class Line extends JPanel implements MouseListener{
 				if(!checkBox()){
 					SingletonStatus.getInstance().setTurn(true);
 				} else {
-					if(!MainPage.getPlayer2()){
+					if(AI.getInstance().getEnabled()){
 						AI.getInstance().run();
 					}
 					
 				}
 				
 			}
-			MainPage.setTurn();
+//			MainPage.setTurn();
 		}
 	}
 

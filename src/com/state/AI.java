@@ -2,7 +2,9 @@ package com.state;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import com.UI.Board;
 import com.UI.Box;
@@ -32,6 +34,20 @@ public class AI {
 		return ai;
 	}
 
+	//sets the board to the AI to work with
+	public void setBoard(Board board) {
+		this.board = board;
+	}
+	
+	//Sets if the AI is enabled
+	public void setEnabled(boolean enable) {
+		this.enabled = enable;
+	}
+	//Gets if the AI is enabled
+	public boolean getEnabled() {
+		return this.enabled;
+	}
+	
 	//This is the run method that will be called when the turn is of AI, this method will calculate what line to click and make its move
 	public void run() {
 		if(!board.checkComplete()){
@@ -39,11 +55,6 @@ public class AI {
 			line = checkValidMoves();
 			makeMove(line);
 		}
-	}
-	
-	//sets the board to the ai to work with
-	public void setBoard(Board board) {
-		this.board = board;
 	}
 
 	//This method takes the line and click on it programatically
@@ -74,78 +85,33 @@ public class AI {
 		}
 		
 		//If it cant find the safe or the box line, it will click on the first line, 
-		//TODO make randomness
+		System.out.println("Returning random Line");
+		return returnRandomLine(getUnclickedLines());
+		
+	}
+	
+	
+	private List<Line> getUnclickedLines(){
+		List<Line> tempLine = new ArrayList<Line>();
+		
 		List<Line> horizontalLines = board.getHorizontalLines();
 		List<Line> verticalLines = board.getVerticalLines();
 		for(Line line : horizontalLines){
 			if(line.getClicked() != true){
-				System.out.println("Returning from first encounter: " + line);
-				return line;
+				tempLine.add(line);
 			}
 		}
 		for(Line line : verticalLines){
 			if(line.getClicked() != true){
 				System.out.println("Returning from first encounter: " + line);
-				return line;
+				tempLine.add(line);
 			}
 		}
-		//This will not be the case but is required for compile
-		System.out.println("Returning null");
-		return null;
 		
+		return tempLine;
 	}
 	
-	//Method that takes a line and checks if both the boxes related to the lines are safe
-	private boolean checkBothBoxesSafe(Line line){
-		Box box = line.getBox1();
-		if(box != null){
-			if(box.getNumberOfLinesCompleted() > 1){
-				return false;
-			}
-		}
-		box = line.getBox2();
-		if(box != null){
-			if(box.getNumberOfLinesCompleted() > 1){
-				return false;
-			}
-		}
-		return true;
-	}
-
-	//Method that checks and returns the first safe line
-	private Line getSafeLine() {
-		for(Box box : board.getBoxes()){
-			if(box.getNumberOfLinesCompleted() < 2){
-				if(box.getVerticalLine1().getClicked()){
-					if(box.getHorizontalLine1().getClicked()){
-						if(box.getHorizontalLine2().getClicked()){
-							if(checkBothBoxesSafe(box.getVerticalLine2())){
-								System.out.println("vertical Line 2");
-								return box.getVerticalLine2();
-							}
-						}
-						if(checkBothBoxesSafe(box.getHorizontalLine2())){
-							System.out.println("horizontal Line 2");
-							return box.getHorizontalLine2();
-						}
-					}
-					if(checkBothBoxesSafe(box.getHorizontalLine1())){
-						System.out.println("horizontal Line 1");
-						return box.getHorizontalLine1();
-					}
-				} else {
-					if(checkBothBoxesSafe(box.getVerticalLine1())){
-						System.out.println("vertical Line 1");
-						return box.getVerticalLine1();
-					}
-				}
-			}
-		}
-		return null;
-	}
-
-
-	
+	//Getting the line if there is a box possibility
 	private Line checkBoxWithCompletionPossibility(){
 		for(Box box : board.getBoxes()){
 			if(box.getNumberOfLinesCompleted() == 3){
@@ -163,5 +129,45 @@ public class AI {
 		}
 		return null;
 	}
+	
+	
+	//Method that takes a line and checks if both the boxes related to the lines are safe
+	private boolean checkBothBoxesSafe(Line line){
+		Box box = line.getBox1();
+		if(box != null){
+			if(box.getNumberOfLinesCompleted() > 1){
+				return false;
+			}
+		}
+		box = line.getBox2();
+		if(box != null){
+			if(box.getNumberOfLinesCompleted() > 1){
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	//Method that checks and returns the first safe line
+	private Line getSafeLine() {
+		List<Line> tempLines = new ArrayList<Line>();
+		for(Line line : getUnclickedLines()){
+			if(checkBothBoxesSafe(line)){
+				tempLines.add(line);
+			}
+		}
+		return returnRandomLine(tempLines);
+	}
+
+	//Method that takes list of lines and returns a random one
+	private Line returnRandomLine(List<Line> tempLines){
+		if(tempLines.size() > 0){
+			Random random = new Random();
+			int index = random.nextInt(tempLines.size() - 0);
+			return tempLines.get(index);
+		}
+		return null;
+	}
+
 
 }

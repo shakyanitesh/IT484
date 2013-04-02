@@ -1,5 +1,7 @@
 package com.state;
 
+import com.UI.MainPage;
+
 public class SingletonStatus {
 	
 	//This class has status of turn and scores.
@@ -33,6 +35,7 @@ public class SingletonStatus {
 	
 	public void setTurn(boolean turn){
 		this.turn = turn;
+		MainPage.setTurn();
 	}
 
 	//Sets the score of the player whose turn it is
