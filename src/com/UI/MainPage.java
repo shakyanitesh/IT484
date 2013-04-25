@@ -1,6 +1,12 @@
 package com.UI;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -22,10 +28,14 @@ public class MainPage extends JPanel{
 	private JPanel score = new JPanel();
 	//Board that will be in main page
 	private static Board board;
+	private static int currentNumOfBoxes;
+	private static boolean currentPlayer2;
 	
 
 	public MainPage(int numOfBoxes, boolean player2){
-		board = new Board(5);
+		currentNumOfBoxes = numOfBoxes;
+		currentPlayer2 = player2;
+		board = new Board(numOfBoxes);
 		AI instance = AI.getInstance();
 		instance.setEnabled(!player2);
 		if(!player2){
@@ -38,6 +48,32 @@ public class MainPage extends JPanel{
 		score.add(player1Score, BorderLayout.LINE_START);
 		score.add(player2Score, BorderLayout.LINE_END);
 		this.add(score, BorderLayout.SOUTH);
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(Color.GRAY);
+		this.add(panel, BorderLayout.EAST);
+		Dimension d = new Dimension(200,40);
+		JButton reset = new JButton("Reset");
+		reset.setSize(d);
+		reset.setMinimumSize(d);
+		reset.setMaximumSize(d);
+		reset.setPreferredSize(d);
+		reset.addActionListener(new ButtonListener());
+		panel.add(reset);
+		
+		
+	}
+	
+	class ButtonListener implements ActionListener{
+
+		public void actionPerformed(ActionEvent e) {
+			System.out.println("HERE");
+			System.out.println(e.getActionCommand());
+			if (e.getActionCommand().equals ("Reset")){
+				Runner.getGame(currentNumOfBoxes, currentPlayer2);
+				System.out.println(e.getActionCommand());
+			}
+		}
 	}
 	
 	public static void setTurn(){
