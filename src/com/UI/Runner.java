@@ -18,7 +18,8 @@ public class Runner {
 		window.setVisible(true);
 		
 //		window.removeAll();
-		window.setSize(600, 600);
+		window.setSize(900, 700);
+		window.setResizable(false);
 		
 		
 		

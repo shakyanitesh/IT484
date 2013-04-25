@@ -18,6 +18,12 @@ public class SingletonStatus {
 	private SingletonStatus(){
 		
 	}
+	
+	public void reset(){
+		this.score1 = 0;
+		this.score2 = 0;
+		this.turn = true;
+	}
 
 	//Returns instance for the class
 	public static SingletonStatus getInstance(){

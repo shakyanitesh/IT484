@@ -71,9 +71,18 @@ public class MainPage extends JPanel{
 			System.out.println(e.getActionCommand());
 			if (e.getActionCommand().equals ("Reset")){
 				Runner.getGame(currentNumOfBoxes, currentPlayer2);
+				reset();
 				System.out.println(e.getActionCommand());
 			}
 		}
+	}
+	
+	
+	public static void reset(){
+		SingletonStatus.getInstance().reset();
+		turnStatus.setText("Player 1's Turn");
+		player1Score.setText("Player 1: 0");
+		player2Score.setText("Player 2: 0");
 	}
 	
 	public static void setTurn(){
