@@ -27,6 +27,7 @@ public class HomePage extends JPanel{
 	private int numOfBoxes;
 	JComboBox<Object> gridList;
 	
+	//Private Constructor
 	private HomePage(){
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 		checkboxes = new JCheckBox[2];
