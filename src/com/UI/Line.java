@@ -90,6 +90,7 @@ public class Line extends JPanel implements MouseListener{
 						AI.getInstance().run();
 					}
 				}
+				MainPage.setTurn();
 			} else {
 				this.setBackground(Color.YELLOW);
 				if(!checkBox()){
@@ -98,11 +99,11 @@ public class Line extends JPanel implements MouseListener{
 					if(AI.getInstance().getEnabled()){
 						AI.getInstance().run();
 					}
-					
+					MainPage.setTurn();
 				}
 				
 			}
-//			MainPage.setTurn();
+//		
 		}
 	}
 

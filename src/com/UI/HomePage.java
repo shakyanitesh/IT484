@@ -3,6 +3,7 @@ package com.UI;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -11,6 +12,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
 
 public class HomePage extends JPanel{
 	/**
@@ -33,6 +35,7 @@ public class HomePage extends JPanel{
 		checkboxes = new JCheckBox[2];
 		addImage();
 		addCheckBoxes();
+		addText();
 		addDropDown();
 		addButton();
 	}
@@ -67,6 +70,16 @@ public class HomePage extends JPanel{
 		}
 	}
 	
+	private void addText(){
+		Dimension d = new Dimension(200,40);
+		JLabel textField = new JLabel("Select the grid for the board: "); 
+		textField.setSize(d);
+		textField.setMinimumSize(d);
+		textField.setMaximumSize(d);
+		textField.setPreferredSize(d);
+		this.add(textField);
+	}
+	
 	private void addDropDown(){
 		Dimension d = new Dimension(200,40);
 		String[] Grid = {"","2x2", "3x3" , "4x4", "5x5", "6x6", "7x7", "8x8", "9x9","10x10"};
@@ -74,7 +87,7 @@ public class HomePage extends JPanel{
 		gridList.setSelectedIndex(0);
 		gridList.setVisible(true);
 		gridList.setSize(d);
-		gridList.setMinimumSize(d);
+		gridList.setMinimumSize(new Dimension(150,20));
 		gridList.setMaximumSize(d);
 		gridList.setPreferredSize(d);
 		this.add(gridList);

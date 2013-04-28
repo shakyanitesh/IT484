@@ -5,11 +5,9 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
 import com.state.AI;
 import com.state.SingletonStatus;
 
@@ -30,9 +28,11 @@ public class MainPage extends JPanel{
 	private static Board board;
 	private static int currentNumOfBoxes;
 	private static boolean currentPlayer2;
+	private static FinishGame game;
 	
 
 	public MainPage(int numOfBoxes, boolean player2){
+		reset();
 		currentNumOfBoxes = numOfBoxes;
 		currentPlayer2 = player2;
 		board = new Board(numOfBoxes);
@@ -88,6 +88,8 @@ public class MainPage extends JPanel{
 	public static void setTurn(){
 		if(board.checkComplete()){
 			turnStatus.setText("Game Complete");
+			game = FinishGame.getInstance();
+			Runner.disableWindow();
 			return;
 		}
 		if(SingletonStatus.getInstance().getTurn()){
@@ -95,6 +97,10 @@ public class MainPage extends JPanel{
 		} else{
 			turnStatus.setText("Player 2's turn");
 		}
+	}
+	
+	public static void closeFinish(){
+		game.dispose();
 	}
 	public static void refreshScore(){
 		player1Score.setText("Player 1: " + SingletonStatus.getInstance().getPlayer1Score());
@@ -107,6 +113,7 @@ public class MainPage extends JPanel{
 	public void setPlayer2Score(int score){
 		player2Score.setText("Player 2: " + score);
 	}
+	
 	
 }
 
