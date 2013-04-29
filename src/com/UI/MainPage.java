@@ -5,9 +5,12 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
 import com.state.AI;
 import com.state.SingletonStatus;
 
@@ -50,6 +53,7 @@ public class MainPage extends JPanel{
 		this.add(score, BorderLayout.SOUTH);
 		
 		JPanel panel = new JPanel();
+		panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
 		panel.setBackground(Color.GRAY);
 		this.add(panel, BorderLayout.EAST);
 		Dimension d = new Dimension(200,40);
@@ -60,6 +64,13 @@ public class MainPage extends JPanel{
 		reset.setPreferredSize(d);
 		reset.addActionListener(new ButtonListener());
 		panel.add(reset);
+		JButton goHome = new JButton("Go To Home");
+		goHome.setSize(d);
+		goHome.setMinimumSize(d);
+		goHome.setMaximumSize(d);
+		goHome.setPreferredSize(d);
+		goHome.addActionListener(new ButtonListener());
+		panel.add(goHome);
 		
 		
 	}
@@ -73,6 +84,10 @@ public class MainPage extends JPanel{
 				Runner.getGame(currentNumOfBoxes, currentPlayer2);
 				reset();
 				System.out.println(e.getActionCommand());
+			}
+			if(e.getActionCommand().equals("Go To Home")){
+				Runner.enableWindow();
+				Runner.getHomePage();
 			}
 		}
 	}

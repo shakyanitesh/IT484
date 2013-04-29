@@ -1,11 +1,12 @@
 package com.UI;
 
 import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -23,7 +24,6 @@ public class HomePage extends JPanel{
 	
 	//Singleton Pattern
 	private static HomePage instance;
-	
 	private JCheckBox[] checkboxes;
 	private boolean player2;
 	private int numOfBoxes;
@@ -31,12 +31,13 @@ public class HomePage extends JPanel{
 	
 	//Private Constructor
 	private HomePage(){
-		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+		super();
+		this.setLayout(new GridBagLayout());
 		checkboxes = new JCheckBox[2];
 		addImage();
 		addCheckBoxes();
 		addText();
-		addDropDown();
+		addDropDown();		
 		addButton();
 	}
 	
@@ -50,23 +51,32 @@ public class HomePage extends JPanel{
 	
 	private void addImage(){
 		JLabel image = new JLabel(new ImageIcon("board.png"));
-		this.add(image);
+		GridBagConstraints c = new GridBagConstraints();
+		c.gridx = 0;
+		c.gridy = 0;
+		this.add(image, c);
+		
 	}
 	
 	private void addCheckBoxes(){
 		Dimension d = new Dimension(200,40);
 		String[] texts = {"Player Vs Player", "Player Vs AI"};
 		ButtonGroup bg1 = new ButtonGroup( );
+		GridBagConstraints c = new GridBagConstraints();
 		int i = 0;
+		int x = 1;
 		for(String text : texts){
 			checkboxes[i] = new JCheckBox(text);
 			checkboxes[i].setSize(d);
 			checkboxes[i].setMinimumSize(d);
 			checkboxes[i].setMaximumSize(d);
 			checkboxes[i].setPreferredSize(d);
-			this.add(checkboxes[i]);
+			c.gridx = 0;
+			c.gridy = x;
+			this.add(checkboxes[i], c);
 			bg1.add(checkboxes[i]);
-			i++;
+			x++;
+			i++;	
 		}
 	}
 	
@@ -77,7 +87,10 @@ public class HomePage extends JPanel{
 		textField.setMinimumSize(d);
 		textField.setMaximumSize(d);
 		textField.setPreferredSize(d);
-		this.add(textField);
+		GridBagConstraints c = new GridBagConstraints();
+		c.gridx = 0;
+		c.gridy = 3;
+		this.add(textField, c);
 	}
 	
 	private void addDropDown(){
@@ -90,8 +103,16 @@ public class HomePage extends JPanel{
 		gridList.setMinimumSize(new Dimension(150,20));
 		gridList.setMaximumSize(d);
 		gridList.setPreferredSize(d);
-		this.add(gridList);
 		
+		//  Center algin the content of the comboBox 
+		DefaultListCellRenderer dlcr = new DefaultListCellRenderer(); 
+		dlcr.setHorizontalAlignment(DefaultListCellRenderer.CENTER); 
+		gridList.setRenderer(dlcr); 
+		
+		GridBagConstraints c = new GridBagConstraints();
+		c.gridx = 0;
+		c.gridy = 4;
+		this.add(gridList, c);		
 	}
 	
 	private void addButton(){
@@ -101,8 +122,11 @@ public class HomePage extends JPanel{
 		start.setMinimumSize(d);
 		start.setMaximumSize(d);
 		start.setPreferredSize(d);
-		this.add(start);
-		
+		GridBagConstraints c = new GridBagConstraints();
+		c.gridx = 0;
+		c.gridy = 5;
+		this.add(start, c);
+				
 		class ButtonListener implements ActionListener{
 
 			@Override

@@ -28,12 +28,10 @@ public class Line extends JPanel implements MouseListener{
 		this.y = y;
 		clicked = false;
 		if(horizontal){
-//			this.setSize(50, 10);
 			this.setMinimumSize(new Dimension(50, 10));
 			this.setMaximumSize(new Dimension(50, 10));
 			this.setPreferredSize(new Dimension(50, 10));
 		} else {
-//			this.setSize(10, 50);
 			this.setMinimumSize(new Dimension(10, 50));
 			this.setMaximumSize(new Dimension(10, 50));
 			this.setPreferredSize(new Dimension(10, 50));
