@@ -3,6 +3,8 @@ package com.UI;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.net.URL;
+
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -46,7 +48,9 @@ public class HomePage extends JPanel{
 	}
 	
 	private void addImage(){
-		JLabel image = new JLabel(new ImageIcon("board.png"));
+		URL resource = getClass().getResource("/board.png");
+		System.out.println(resource);
+		JLabel image = new JLabel(new ImageIcon(resource));
 		this.add(image);
 	}
 	
