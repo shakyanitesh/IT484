@@ -5,6 +5,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.ImageIcon;
@@ -50,12 +51,19 @@ public class HomePage extends JPanel{
 	}
 	
 	private void addImage(){
+<<<<<<< HEAD
 		JLabel image = new JLabel(new ImageIcon("board.png"));
 		GridBagConstraints c = new GridBagConstraints();
 		c.gridx = 0;
 		c.gridy = 0;
 		this.add(image, c);
 		
+=======
+		URL resource = getClass().getResource("/board.png");
+		System.out.println(resource);
+		JLabel image = new JLabel(new ImageIcon(resource));
+		this.add(image);
+>>>>>>> refs/remotes/origin/master
 	}
 	
 	private void addCheckBoxes(){
