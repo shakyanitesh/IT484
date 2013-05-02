@@ -104,7 +104,7 @@ public class MainPage extends JPanel{
 		if(board.checkComplete()){
 			turnStatus.setText("Game Complete");
 			game = FinishGame.getInstance();
-			game.setVisible(true);
+			FinishGame.refresh();
 			Runner.disableWindow();
 			return;
 		}

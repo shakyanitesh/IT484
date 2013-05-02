@@ -37,26 +37,20 @@ public class FinishGame extends JFrame{
 	}
 	
 	public static void refresh(){
-		
+		FinishGame.getInstance().winner();
+		FinishGame.getInstance().setVisible(true);
 	}
 	
 	private FinishGame(){
 		super(WINDOW_TITLE);
-		winnerText = new JLabel();
-		winnerText.setText("");
-		//winnerText.setEditable(false);
-		player1Score = new JLabel();
-		player1Score.setText("");
-		//player1Score.setEditable(false);
-		player2Score = new JLabel();
-		player2Score.setText("");
-		//player2Score.setEditable(false);
-		this.getContentPane().add(winnerText);
-		this.getContentPane().add(player1Score);
-		this.getContentPane().add(player2Score);
 		this.setSize(250, 200);
+		
+
+		
 		JPanel panel = new JPanel();
 		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+		
+		winnerText = new JLabel();
 		winnerText.setAlignmentX(Component.CENTER_ALIGNMENT);
 		panel.add(winnerText);
 		panel.add(Box.createRigidArea(new Dimension (0,15)));
@@ -66,10 +60,12 @@ public class FinishGame extends JFrame{
 		panel.add(finalScore);
 		panel.add(Box.createRigidArea(new Dimension (0,10)));		
 		
+		player1Score = new JLabel();
 		player1Score.setAlignmentX(Component.CENTER_ALIGNMENT);
 		panel.add(player1Score);
 		panel.add(Box.createRigidArea(new Dimension (0,10)));
 		
+		player2Score = new JLabel();
 		player2Score.setAlignmentX(Component.CENTER_ALIGNMENT);
 		panel.add(player2Score);
 		panel.add(Box.createRigidArea(new Dimension (0,15)));
@@ -79,7 +75,7 @@ public class FinishGame extends JFrame{
 		goTo.setAlignmentX(Component.CENTER_ALIGNMENT);
 		panel.add(goTo);
 		this.add(panel);
-		winner();
+		this.winner();
 		this.setVisible(true);
 		this.addWindowListener(new WindowEventHandler());
 		this.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
