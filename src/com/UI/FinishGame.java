@@ -36,6 +36,10 @@ public class FinishGame extends JFrame{
 		return instance;
 	}
 	
+	public static void refresh(){
+		
+	}
+	
 	private FinishGame(){
 		super(WINDOW_TITLE);
 		winnerText = new JLabel();
